@@ -2,7 +2,7 @@
   height: 45px;
 }
 #searchBar input {
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 5rem 0px 0px 5rem;
   width: 70%;
   border: none;
 }
@@ -11,7 +11,7 @@
 }
 #searchBar button {
   width: 60px;
-  border-radius: 0px 4px 4px 0px;
+  border-radius: 0px 5rem 5rem 0px;
 }
 #searchBar button img {
   height: 100%;
