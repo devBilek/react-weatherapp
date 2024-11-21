@@ -27,7 +27,7 @@ const useWeatherData = (city, apiKey) => {
     const fetchWeatherData = async () => {
       try {
         const weatherResponse = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${locationData.lat}&lon=${locationData.lon}&appid=${apiKey}`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${locationData.lat}&lon=${locationData.lon}&appid=${apiKey}&units=metric`
         );
         setWeatherData(weatherResponse.data);
       } catch (error) {
