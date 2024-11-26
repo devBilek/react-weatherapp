@@ -5,12 +5,14 @@ import SearchBar from "./components/SearchBar/searchBar";
 import WeatherImage from "./components/WeatherImage/weatherImage";
 import WeatherInfo from "./components/WeatherInfo/weatherInfo";
 import WeatherDetails from "./components/WeatherDetails/weatherDetails";
+import LoadingSpinner from "./components/loadingSpinner/loadingSpinner";
+import "./App.css"
 
 function App() {
   const [city, setCity] = useState("Moscow");
   const [newCity, setNewCity] = useState("");
   const apiKey = process.env.REACT_APP_API_KEY;
-  const { locationData, weatherData } = useWeatherData(city, apiKey);
+  const { locationData, weatherData, isLoading } = useWeatherData(city, apiKey);
   const btnRef = useRef(null);
 
   const handleInputChange = (event) => {
@@ -30,8 +32,8 @@ function App() {
 
   return (
     <div className="d-flex vh-100 justify-content-center align-items-center text-light">
-      <div className="container col-lg-4 col-md-4 col-md-12 bg-dark rounded-5 p-4">
-        {locationData && weatherData && (
+      <div className="container col-lg-4 col-md-4 col-md-12 bg-dark rounded-5 p-4" id="container">
+        {!isLoading ? (
           <>
             <SearchBar
               newCity={newCity}
@@ -47,7 +49,7 @@ function App() {
             />
             <WeatherDetails weatherData={weatherData} />
           </>
-        )}
+        ) : <LoadingSpinner/>}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import axios from "axios";
 const useWeatherData = (city, apiKey) => {
   const [locationData, setLocationData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     if (city.trim() === "") return;
@@ -11,7 +12,7 @@ const useWeatherData = (city, apiKey) => {
     const fetchLocationData = async () => {
       try {
         const geoResponse = await axios.get(
-          `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
+          `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=3&appid=${apiKey}`
         );
         setLocationData(geoResponse.data[0]);
       } catch (error) {
@@ -32,12 +33,14 @@ const useWeatherData = (city, apiKey) => {
         setWeatherData(weatherResponse.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false)
       }
     };
     fetchWeatherData();
   }, [locationData, apiKey]);
 
-  return { locationData, weatherData };
+  return { locationData, weatherData, isLoading };
 };
 
 export default useWeatherData;

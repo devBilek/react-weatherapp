@@ -4,7 +4,10 @@ const WeatherInfo = ({ locationData, weatherData }) => (
     <h2 className="fs-1 m-0">{weatherData.main.temp}℃</h2>
     <h2 className="fs-1">
       {locationData.name}{" "}
-      <img src={`https://flagsapi.com/${locationData.country}/flat/32.png`} alt="flag" />
+      <img
+        src={`https://flagsapi.com/${locationData.country}/flat/32.png`}
+        alt="flag"
+      />
     </h2>
   </div>
 );
